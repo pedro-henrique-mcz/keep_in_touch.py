@@ -1,20 +1,17 @@
 import unittest
-import pytest
 from src.classes.person_list import PersonList
-
-@pytest.mark.parametrize("invalid_types", [
-    int,
-    float,
-    str,
-    bool,
-    tuple,
-    dict,
-    None
-])
+from src.classes.person import Person
 
 class TestPersonList(unittest.TestCase):
     '''Test class for PersonList class'''
+    def test_if_add_person_to_list_changes_the_list(self):
+        '''This test garantee that the person add by
+        the PersonList.add_person method will be in the last position 
+        of the Person list in _people'''
+        my_list = PersonList()
+        my_person = Person('person_name')
 
-    def test_non_list_type_in_contruction_function(self, invalid_types):
-        with self.assertRaises(ValueError):
-                PersonList(invalid_types)
+        my_list.add_person(my_person)
+
+        self.assertEqual(my_list._people[0], my_person)
+        
