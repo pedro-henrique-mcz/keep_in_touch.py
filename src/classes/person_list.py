@@ -17,5 +17,18 @@ class PersonList():
         self._people.append(person)
         return person
 
-    def remove_person(self, person:Person):
-        '''Simple revome method for the '''
+    def remove_person(self, name:str):
+        '''Simple revome method for remove
+        some person from the list of PersonList'''
+        person = 
+    
+    def search_person(self, name:str) -> tuple|None:
+        '''This function return some person 
+        from the PersonList'''
+
+        for person, index in self._people:
+            if person.name == name:
+                return (person, index)
+            
+        return None
+

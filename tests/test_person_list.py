@@ -28,7 +28,28 @@ class TestPersonList(unittest.TestCase):
         self.assertEqual(person_input, person_added)
 
         
-
-
+    def test_if_search_person_return_person(self):
+        '''Tests if the search_person method find
+        and return the a person by name'''
+        name = 'person_name'
+        
+        my_person = Person(name)
+        my_list = PersonList([my_person])
+        
+        person_finded = my_list.search_person(name)
+        self.assertEqual(my_person, person_finded)
 
         
+    def test_if_search_person_return_none(self):
+        '''Test if the search_person method fails and 
+        return none if it dosen't find the person in
+        the list'''
+
+        name = 'person_name'
+        other_name = "unknow_name"
+        
+        my_person = Person(name)
+        my_list = PersonList([my_person])
+        
+        person_finded = my_list.search_person(other_name)
+        self.assertEqual(None, person_finded)
