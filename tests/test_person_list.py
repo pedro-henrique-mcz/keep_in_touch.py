@@ -1,3 +1,4 @@
+'''Test for the PersonList class'''
 import unittest
 from src.classes.person_list import PersonList
 from src.classes.person import Person
@@ -14,4 +15,20 @@ class TestPersonList(unittest.TestCase):
         my_list.add_person(my_person)
 
         self.assertEqual(my_list._people[0], my_person)
+    
+    def test_the_person_added_is_the_person_returned(self):
+        '''This tests if the person that was added before
+        is the same person that will be returned
+        in the end of the add_person function'''
+        my_list = PersonList()
+        person_input = Person('person_name')
+
+        person_added = my_list.add_person(person_input)
+
+        self.assertEqual(person_input, person_added)
+
+        
+
+
+
         

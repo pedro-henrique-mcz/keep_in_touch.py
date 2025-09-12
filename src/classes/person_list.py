@@ -15,4 +15,7 @@ class PersonList():
     def add_person(self, person:Person) -> Person:
         '''Simple adding of a person into the PersonList'''
         self._people.append(person)
+        return person
 
+    def remove_person(self, person:Person):
+        '''Simple revome method for the '''
