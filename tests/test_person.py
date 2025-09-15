@@ -1,5 +1,5 @@
 import unittest
-from src.classes.person import Person
+from src.data.person import Person
 
 class TestPerson(unittest.TestCase):
 

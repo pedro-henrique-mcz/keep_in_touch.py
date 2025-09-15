@@ -1,7 +1,7 @@
 '''Test for the PersonList class'''
 import unittest
-from src.classes.person_list import PersonList
-from src.classes.person import Person
+from src.data.person_list import PersonList
+from src.data.person import Person
 
 class TestPersonList(unittest.TestCase):
     '''Test class for PersonList class'''
