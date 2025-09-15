@@ -17,18 +17,24 @@ class PersonList():
         self._people.append(person)
         return person
 
-    def remove_person(self, name:str):
+    def remove_person(self, name:str) -> bool:
         '''Simple revome method for remove
         some person from the list of PersonList'''
-        person = 
-    
-    def search_person(self, name:str) -> tuple|None:
+        index = self.search_person(name)
+        self._people.remove(self._people[index]) 
+        
+        return True    
+
+    def show_all(self) -> list[Person]:
+        return self._people
+
+    def search_person(self, name:str) -> int|None:
         '''This function return some person 
         from the PersonList'''
 
-        for person, index in self._people:
-            if person.name == name:
-                return (person, index)
+        for i in range(len(self._people)):
+            if self._people[i].name == name:
+                return i
             
         return None
 

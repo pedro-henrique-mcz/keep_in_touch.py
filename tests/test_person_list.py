@@ -5,6 +5,8 @@ from src.classes.person import Person
 
 class TestPersonList(unittest.TestCase):
     '''Test class for PersonList class'''
+
+
     def test_if_add_person_to_list_changes_the_list(self):
         '''This test garantee that the person add by
         the PersonList.add_person method will be in the last position 
@@ -36,8 +38,9 @@ class TestPersonList(unittest.TestCase):
         my_person = Person(name)
         my_list = PersonList([my_person])
         
-        person_finded = my_list.search_person(name)
-        self.assertEqual(my_person, person_finded)
+        index = my_list.search_person(name)
+
+        self.assertEqual(my_person, my_list._people[index])
 
         
     def test_if_search_person_return_none(self):
@@ -52,4 +55,28 @@ class TestPersonList(unittest.TestCase):
         my_list = PersonList([my_person])
         
         person_finded = my_list.search_person(other_name)
+        print(person_finded)
         self.assertEqual(None, person_finded)
+
+    def test_if_remove_the_right_person_from_the_list_and_decrement_the_list(self):
+        '''tests if the remove_person remove 
+        the person from the list and decrements the list'''
+        name = 'person_name'
+        
+        my_person = Person(name)
+        my_list = PersonList([my_person])
+
+        self.assertEqual(True, my_list.remove_person(name))
+        self.assertEqual(len(my_list._people), 0)
+
+    def test_if_show_all_return_all_persons_from_the_list(self):
+        '''Tests if the show_all return all the Person Objects from the 
+        PersonList Object
+        '''
+        name = 'person_name'
+        
+        my_person = Person(name)
+        my_list = PersonList([my_person])
+
+        self.assertEqual(my_list.show_all(), my_list._people)
+
