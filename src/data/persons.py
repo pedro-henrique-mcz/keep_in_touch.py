@@ -18,10 +18,8 @@ class Persons():
         for people in _list:
             if isinstance(people, str) and people:
                 self._people.append(Person(people))
-            else:
-                raise ValueError('All items of the list must to be string type.')
-            
-            
+
+                     
 
     def add_person(self, person:Person) -> Person:
         '''Simple adding of a person into the PersonList'''

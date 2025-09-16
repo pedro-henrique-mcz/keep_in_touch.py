@@ -1,6 +1,6 @@
 '''This module is reponsible for manage the PersonList'''
 from src.utils.utils_manager import open_json_file
-from src.data.person_list import PersonList
+from src.data.persons import PersonList
 from src.data.person import Person
 
 #opening the mocked persons, all paths are relative to main py in the root 

@@ -1,7 +1,9 @@
 '''Test for the PersonList class'''
 import unittest
+import pytest
 from src.data.persons import Persons
 from src.data.person import Person
+
 
 class TestPersons(unittest.TestCase):
     '''Test class for Persons class'''
@@ -21,6 +23,47 @@ class TestPersons(unittest.TestCase):
 
         for i in range(len(my_list)):
             self.assertEqual(my_persons._people[i], my_persons_clone[i])
+
+    def test_persons_with_invalid_argument(self):
+
+        invalid_argument = [
+        123,
+        ("a", "b"),
+        3.14,
+        "uma string",
+        None,
+        True,
+        {"key": "value"}
+        ]
+
+        with pytest.raises(ValueError):
+            for argument in invalid_argument:
+                Persons(argument)
+
+    def test_list_with_no_str_and_void_items(self):
+        '''Tests Persons constructo with a list with no 
+        str itens within'''
+        my_list = [
+            'Pedro', 
+            8, 
+            'Antônio', 
+            {'nome':'Edriana'}, 
+            [], 
+            'Álvaro', 
+            None
+        ]
+        
+        valid_itens = [
+            Person('Pedro'),
+            Person('Antônio'),
+            Person('Álvaro')
+        ]
+
+        my_persons = Persons(my_list).show_all()
+        
+        for i in range(len(my_persons)):
+            self.assertEqual(my_persons[i], valid_itens[i]) 
+
 
     def test_if_add_person_to_list_changes_the_list(self):
         '''This test garantee that the person add by
@@ -66,7 +109,6 @@ class TestPersons(unittest.TestCase):
         my_list = Persons([name])
         
         person_finded = my_list.search_person(other_name)
-        print(person_finded)
         self.assertEqual(None, person_finded)
 
     def test_if_remove_the_right_person_from_the_list_and_decrement_the_list(self):
