@@ -24,7 +24,7 @@ class TestUtilsManager(unittest.TestCase):
             self.assertEqual(data[1], 'person_two')
             self.assertEqual(data[2], 'person_three')
 
-        mock_file.assert_called_once_with('fake_path.json')
+        mock_file.assert_called_once_with('fake_path.json', mode='r', encoding='utf-8')
 
     def test_FileNotFoundError(self):
         '''This test guarantee that open_json_file 

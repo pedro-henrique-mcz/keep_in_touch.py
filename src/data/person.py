@@ -10,5 +10,12 @@ class Person():
         '''Person method to change name'''
         self.name = new_name
 
+    def __eq__(self, other):
+        '''This fuction allow us to 
+        verify is two persons are the same in boolean 
+        tests'''
+        if not isinstance(other, Person):
+            return NotImplemented
+        return self.name == other.name
 
 

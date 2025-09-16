@@ -1,17 +1,32 @@
 '''Test for the PersonList class'''
 import unittest
-from src.data.person_list import PersonList
+from src.data.persons import Persons
 from src.data.person import Person
 
-class TestPersonList(unittest.TestCase):
-    '''Test class for PersonList class'''
+class TestPersons(unittest.TestCase):
+    '''Test class for Persons class'''
 
+    def test_persons_valid_args(self):
+        '''this will teste if person return every single item 
+        from a list full of acceptable itens'''
+        my_list = ['Pedro', 'Antônio', 'Edriana', 'Álvaro']
+        my_persons = Persons(my_list)
+
+        my_persons_clone = [
+            Person('Pedro'),
+            Person('Antônio'),
+            Person('Edriana'),
+            Person('Álvaro')
+        ]
+
+        for i in range(len(my_list)):
+            self.assertEqual(my_persons._people[i], my_persons_clone[i])
 
     def test_if_add_person_to_list_changes_the_list(self):
         '''This test garantee that the person add by
-        the PersonList.add_person method will be in the last position 
+        the Persons.add_person method will be in the last position 
         of the Person list in _people'''
-        my_list = PersonList()
+        my_list = Persons()
         my_person = Person('person_name')
 
         my_list.add_person(my_person)
@@ -22,7 +37,7 @@ class TestPersonList(unittest.TestCase):
         '''This tests if the person that was added before
         is the same person that will be returned
         in the end of the add_person function'''
-        my_list = PersonList()
+        my_list = Persons()
         person_input = Person('person_name')
 
         person_added = my_list.add_person(person_input)
@@ -34,13 +49,10 @@ class TestPersonList(unittest.TestCase):
         '''Tests if the search_person method find
         and return the a person by name'''
         name = 'person_name'
-        
-        my_person = Person(name)
-        my_list = PersonList([my_person])
-        
+        my_list = Persons([name])
         index = my_list.search_person(name)
 
-        self.assertEqual(my_person, my_list._people[index])
+        self.assertEqual(my_list._people[0], my_list._people[index])
 
         
     def test_if_search_person_return_none(self):
@@ -51,8 +63,7 @@ class TestPersonList(unittest.TestCase):
         name = 'person_name'
         other_name = "unknow_name"
         
-        my_person = Person(name)
-        my_list = PersonList([my_person])
+        my_list = Persons([name])
         
         person_finded = my_list.search_person(other_name)
         print(person_finded)
@@ -62,21 +73,18 @@ class TestPersonList(unittest.TestCase):
         '''tests if the remove_person remove 
         the person from the list and decrements the list'''
         name = 'person_name'
-        
-        my_person = Person(name)
-        my_list = PersonList([my_person])
+        my_list = Persons([name])
 
         self.assertEqual(True, my_list.remove_person(name))
         self.assertEqual(len(my_list._people), 0)
 
     def test_if_show_all_return_all_persons_from_the_list(self):
         '''Tests if the show_all return all the Person Objects from the 
-        PersonList Object
+        Persons Object
         '''
         name = 'person_name'
         
-        my_person = Person(name)
-        my_list = PersonList([my_person])
+        my_list = Persons([name])
 
         self.assertEqual(my_list.show_all(), my_list._people)
 

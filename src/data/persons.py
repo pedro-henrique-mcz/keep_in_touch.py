@@ -12,8 +12,15 @@ class Persons():
         # the default parameter will be a empty list
         self._people = []
 
+        if not isinstance(_list, list) and list:
+            raise ValueError('Persons argument must be a list type.')
+
         for people in _list:
-            self._people.append(Person(people))
+            if isinstance(people, str) and people:
+                self._people.append(Person(people))
+            else:
+                raise ValueError('All items of the list must to be string type.')
+            
             
 
     def add_person(self, person:Person) -> Person:
