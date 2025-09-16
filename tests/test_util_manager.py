@@ -42,6 +42,6 @@ class TestUtilsManager(unittest.TestCase):
         undecoded_json = '["person_one", "person_two" "person_three"]'
 
         with patch('builtins.open', mock_open(read_data=undecoded_json)):
-            with self.assertRaises(json.JSONDecodeError):
+            with pytest.raises(json.JSONDecodeError):
                 open_json_file('fake_path.json')
             
