@@ -9,7 +9,9 @@ def open_json_file(json_file:str):
     try:
         with open(json_file) as file:
             data = json.load(file)
-    except FileNotFoundError:
+    except FileNotFoundError: 
         raise FileNotFoundError(f'File "{json_file}" Not Found')
+    except json.JSONDecodeError:
+        raise json.JSONDecodeError(f'File to decode {json_file}.')
     else:
         return data
