@@ -1,16 +1,20 @@
 '''This module only handle the PersonList and it's banch methods'''
 from .person import Person 
 
-class PersonList():
+class Persons():
     '''This class represent the 
     a list of Person classes'''
 
-    def __init__(self, _people:list[Person]=[]): 
+    def __init__(self, _list:list=[]): 
         '''PersonList construction's function'''
         
         #if no list of person is placed, 
         # the default parameter will be a empty list
-        self._people = _people
+        self._people = []
+
+        for people in _list:
+            self._people.append(Person(people))
+            
 
     def add_person(self, person:Person) -> Person:
         '''Simple adding of a person into the PersonList'''
