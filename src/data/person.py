@@ -6,27 +6,37 @@ class Person():
     def __init__(self, name:str, date:datetime.date):
         '''Person class construct'''
 
-        if not isinstance(name, str) or not name:
-            message = 'The "name" argument in Person Object must be a str type.'
-            
-            raise ValueError(message)
+        self._valid_args(name, 'name', str)
+        self._valid_args(date, 'datetime.date', datetime.date)
         
-        if not isinstance(date, datetime.date) or not date:
-            message = 'The "date" argument in Person Object ' \
-            'must be a datetime.date type.'
-            
-            raise ValueError(message)
-
         self._name = name
         self._date = date
     
-    def name(self) -> str:
+    def name(self, name=None) -> str:
         '''Person name handler'''
+        if name:
+            self._valid_args(name, 'name', str)
+            self._name = name
+
         return self._name
 
-    def date(self) -> datetime.date:
+    def date(self, date=None) -> datetime.date:
         '''Person date handler'''
+        if date:
+            self._valid_args(date, 'datetime.date', datetime.date)
+            self._date = date
+        
         return self._date
+    
+    def _valid_args(self, argument_value, arguement_type, valid_type)-> bool:
+        '''Tests if the argment of one of our methods 
+        are valid, if its not, a error will be raise'''
+        
+        if not isinstance(argument_value, valid_type) or not argument_value:
+            raise ValueError(f'The {arguement_type} must be a {valid_type} type.')
+        else:
+            return True
+
 
     def __str__(self):
         '''String representation for debugs'''

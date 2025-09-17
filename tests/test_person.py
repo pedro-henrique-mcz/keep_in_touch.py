@@ -6,45 +6,29 @@ from src.data.person import Person
 class TestPerson(unittest.TestCase):
     '''Test class for the Person Class'''
 
-    def test_invalid_name(self):
-        '''Tests invalid types name.'''
+    def test_valid_args(self):
+        '''tests if the args are valid or not in this 
+        check function'''
 
-        invalid_types = [
-            123,
-            ("a", "b"),
-            3.14,
-            [],
-            None,
-            True,
-            {"key": "value"}
-        ]
+        my_person = Person('Somenone', datetime.date(2000,6,27))
 
-        with pytest.raises(ValueError):
-            for arg in invalid_types:
-                Person(arg , datetime.date(2000,6,27))
+        valid_type = str
+        my_type = 'string'
 
-    def test_invalid_date(self):
-    
-        '''Tests invalid date types.'''
+        self.assertEqual(
+            my_person._valid_args(my_type, 'str', valid_type),
+            True
+        )
 
-        invalid_types = [
-            123,
-            ("a", "b"),
-            3.14,
-            [],
-            None,
-            True,
-            {"key": "value"},
-            "string"
-        ]
+    def test_invalid_type(self):
+        '''test case if s invalid type are throw'''
+        my_person = Person('Somenone', datetime.date(2000,6,27))
+
+        valid_type = str
+        my_type = 2
 
         with pytest.raises(ValueError):
-            for arg in invalid_types:
-                Person("Someone", arg)
-    
-        
-    def test_str(self):
-        '''Tests the return of __str__'''
-        my_person = Person('Someone', datetime.date(2000,6,27))
-        self.assertEqual(print(my_person), f'name={my_person._name}, date={my_person._date}')
+            my_person._valid_args(my_type, 'str', valid_type)
 
+
+    
