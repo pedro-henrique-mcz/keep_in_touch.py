@@ -30,5 +30,30 @@ class TestPerson(unittest.TestCase):
         with pytest.raises(ValueError):
             my_person._valid_args(my_type, 'str', valid_type)
 
+    def test_name_getter(self):
+        '''Test the Person's name getter'''
+        my_person = Person('Someone', datetime.date(2000,6,27))
 
+        self.assertEqual(my_person.name(), 'Someone')
     
+    def test_name_invalid_getter(self):
+        '''Test the Person's invalid name getter'''
+        my_person = Person('Someone', datetime.date(2000,6,27))
+
+        with pytest.raises(ValueError):
+            my_person.name(2)
+
+    def test_valid_date_setter(self):
+        '''Test a valid date setter for Person'''
+        my_person = Person('Someone', datetime.date(2000,6,27))
+
+        my_person.date(datetime.date(2002,7,5))
+
+        self.assertEqual(my_person.date(), datetime.date(2002,7,5))
+
+    def test_invalid_date_setter(self):
+        '''Test a invalid Person's date change'''
+        my_person = Person('Someone', datetime.date(2000,6,27))
+
+        with pytest.raises(ValueError):
+            my_person.date(2)

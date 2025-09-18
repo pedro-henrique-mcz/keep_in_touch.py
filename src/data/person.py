@@ -32,6 +32,18 @@ class Person():
         '''Tests if the argment of one of our methods 
         are valid, if its not, a error will be raise'''
         
+        # if not isinstance(argument_value, valid_type) or not argument_value:
+        #     raise ValueError(f'The {arguement_type} must be a {valid_type} type.')
+        # else:
+        #     return True
+
+        '''Tests if the argment of one of our methods
+    are valid, if its not, a error will be raise'''
+
+    # --- ADICIONE ESTA LINHA PARA DEBUG ---
+        print(f"\n[DEBUG] Valor='{argument_value}', Tipo='{type(argument_value)}', Condição_do_if='{not isinstance(argument_value, valid_type) or not argument_value}'")
+    # ----------------------------------------
+
         if not isinstance(argument_value, valid_type) or not argument_value:
             raise ValueError(f'The {arguement_type} must be a {valid_type} type.')
         else:
